@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmoson — journal de bord</title>
+<style>
+  :root {
+    --paper: #F7F3EA;
+    --ink: #1C1B19;
+    --ink-soft: #4A463E;
+    --accent: #3B5B6B;
+    --rust: #A85C32;
+    --line: #DCD5C4;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.65;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+  header { position: relative; padding: 96px 0 56px; overflow: hidden; }
+  .wave {
+    position: absolute; top: 28px; left: 50%; transform: translateX(-50%);
+    width: 640px; max-width: 100%; height: 64px; z-index: 0; opacity: 0.55;
+  }
+  .wave path {
+    stroke: var(--accent); stroke-width: 1.4; fill: none;
+    stroke-dasharray: 4 3; animation: drift 9s linear infinite;
+  }
+  @keyframes drift { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -140; } }
+  .eyebrow {
+    position: relative; z-index: 1; font-size: 13px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--rust); font-weight: 600; margin: 0 0 18px;
+  }
+  h1 {
+    position: relative; z-index: 1; font-family: Georgia, "Times New Roman", serif;
+    font-size: 48px; font-weight: 400; letter-spacing: -0.01em; margin: 0 0 8px; color: var(--ink);
+  }
+  .subtitle { position: relative; z-index: 1; font-size: 17px; color: var(--ink-soft); margin: 0; max-width: 460px; }
+  main { padding-bottom: 80px; }
+  .entry { border-top: 1px solid var(--line); padding: 36px 0; }
+  main .entry:last-of-type { border-bottom: none; }
+  .entry p { font-size: 16.5px; color: var(--ink); margin: 0; }
+  .entry p + p { margin-top: 14px; }
+  .date {
+    display: block; font-size: 12.5px; color: var(--ink-soft);
+    letter-spacing: 0.04em; margin-bottom: 10px; font-variant-numeric: tabular-nums;
+  }
+  .tag {
+    display: inline-block; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--accent); border-radius: 100px; padding: 3px 10px; margin-top: 16px;
+  }
+  footer { padding: 32px 0 64px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+  footer .signature { font-family: Georgia, serif; font-style: italic; color: var(--ink); }
+  @media (max-width: 600px) {
+    header { padding: 64px 0 40px; }
+    h1 { font-size: 36px; }
+    .wave { top: 18px; height: 48px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg class="wave" viewBox="0 0 640 64" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,32 Q20,8 40,32 T80,32 Q100,56 120,32 T160,32 Q180,4 200,32 T240,32 Q260,52 280,32 T320,32 Q340,10 360,32 T400,32 Q420,54 440,32 T480,32 Q500,6 520,32 T560,32 Q580,50 600,32 T640,32" />
+    </svg>
+    <p class="eyebrow">Carnet d'atelier</p>
+    <h1>Emmoson</h1>
+    <p class="subtitle">Un capteur fait à la main pour écouter ce qu'une pièce a vraiment à dire — du grave inaudible à l'aigu qui dérange certains et personne d'autre.</p>
+  </header>
+  <main>
+    <div class="entry">
+      <span class="date">L'idée</span>
+      <p>Tout est parti d'une question simple : ma pièce fait-elle plus de bruit que ce que j'entends ? Le bruit ne s'arrête pas aux limites de mon oreille — il y a des basses qu'on ne perçoit pas et des aigus que seules certaines personnes captent, parfois au point d'en être dérangées.</p>
+      <p>Emmoson est ma réponse à cette question : un petit boîtier, posé dans une pièce, qui écoute en continu et garde une trace de ce qu'il entend — pour qu'on puisse y revenir plus tard et vraiment comprendre.</p>
+    </div>
+    <div class="entry">
+      <span class="date">Comment ça écoute</span>
+      <p>Trois oreilles différentes travaillent ensemble : un micro pour le spectre audible large, un micro pour les aigus qui filent au-delà de ce qu'on perçoit normalement, et un accéléromètre pour les vibrations et infrasons qui passent par les murs plutôt que par l'air.</p>
+      <p>Sur place, le boîtier ne fait que capturer et chiffrer un niveau sonore en continu — pas d'analyse compliquée embarquée. Le vrai travail de compréhension — quelle fréquence, quelle source, quel motif — se fait après, une fois les données rapportées sur un ordinateur.</p>
+      <span class="tag">Raspberry Pi 4 · I2S · I2C</span>
+    </div>
+    <div class="entry">
+      <span class="date">Où j'en suis</span>
+      <p>Le prototype prend forme petit bout par petit bout — chaque brique du montage est aussi une leçon de Python que je découvre en la construisant, sans plan figé à l'avance. Le matériel est commandé, le câblage est dessiné, et l'idée d'en construire plusieurs un jour reste posée sur la table, sans presser le pas.</p>
+    </div>
+  </main>
+  <footer>
+    <p class="signature">— Régis, en cours de route</p>
+  </footer>
+</div>
+</body>
+</html>
